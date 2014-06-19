@@ -45,8 +45,15 @@ function attachEvents() {
     var events = this.events;
     var el = this.el;
 
-    Object.keys(events).forEach(function eventLooper (sel) {
+    Object.keys(events).forEach(function eventLooper(sel) {
         var node = el.querySelector(sel);
+        var event = events[sel];
+
+        if (node) {
+            Object.keys(event).forEach(function type(type) {
+                node.addEventListener(type, event[type]);
+            });
+        }
     });
 }
 
