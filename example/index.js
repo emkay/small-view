@@ -1,11 +1,16 @@
-var View = require('..');
+var View = require('small-view');
 
 var view = View({
+    container: '#some-view',
     events: {
-        '.test': {
-            click: 'handleClick'
+        'button': {
+            click: handleClick
         }
     }
 });
+
+function handleClick() {
+    console.log('Click!');
+}
 
 view.init();
