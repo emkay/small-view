@@ -1,0 +1,23 @@
+{
+  "name": "small-view",
+  "version": "0.0.0",
+  "description": "super small view",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap tests/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/emkay/small-view.git"
+  },
+  "keywords": [
+    "view",
+    "engine"
+  ],
+  "author": "Michael Matuzak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/emkay/small-view/issues"
+  },
+  "homepage": "https://github.com/emkay/small-view"
+}
