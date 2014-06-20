@@ -52,9 +52,9 @@ View.prototype.remove = function remove() {
     return this;
 };
 
-function attachEvents() {
-    walkEvents.call(this);;
-}
+View.prototype.attachEvents = function attachEvents() {
+    walkEvents.call(this);
+};
 
 function walkEvents(isRemove) {
     var events = this.events;
