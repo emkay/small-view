@@ -37,24 +37,45 @@ View.prototype.init = function init() {
     }
 };
 
+View.prototype.detachEvents = function detachEvents() {
+    walkEvents.call(this, true);
+};
+
 View.prototype.render = function render(context) {
     return this;
 };
 
+View.prototype.remove = function remove() {
+    this.el && this.el.parentNode.removeChild(this.el);
+    this.detachEvents();
+    delete this.el;
+    return this;
+};
+
 function attachEvents() {
+    walkEvents.call(this);;
+}
+
+function walkEvents(isRemove) {
     var events = this.events;
     var el = this.el;
 
-    Object.keys(events).forEach(function eventLooper(sel) {
-        var node = el.querySelector(sel);
-        var event = events[sel];
+    if (events) {
+        Object.keys(events).forEach(function eventLooper(sel) {
+            var node = el.querySelector(sel);
+            var event = events[sel];
 
-        if (node) {
-            Object.keys(event).forEach(function type(type) {
-                node.addEventListener(type, event[type]);
-            });
-        }
-    });
+            if (node) {
+                Object.keys(event).forEach(function type(type) {
+                    if (!isRemove) {
+                        node.addEventListener(type, event[type]);
+                    } else {
+                        node.removeEventListener(type, event[type]);
+                    }
+                });
+            }
+        });
+    }
 }
 
 module.exports = View;
