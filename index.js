@@ -33,7 +33,7 @@ View.prototype.init = function init() {
     }
 
     if (this.events) {
-        attachEvents.call(this);
+        this.attachEvents();
     }
 };
 
