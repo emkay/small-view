@@ -14,3 +14,5 @@ function handleClick() {
 }
 
 view.init();
+
+view.remove();
