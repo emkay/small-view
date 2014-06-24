@@ -16,18 +16,20 @@ View.prototype.init = function init() {
     this.el = document.querySelector(this.container);
 
     if (!this.el) {
-        if (this.container === 'body') {
-            document.body = document.createElement('body');
-            this.el = document.body;
-        } else {
-            this.el = document.createElement(this.tagName);
-            if (this.parentNode) {
-                this.parentNode.appendChild(this.el);
+        if (!this.template) {
+            if (this.container === 'body') {
+                document.body = document.createElement('body');
+                this.el = document.body;
             } else {
-                if (!document.body) {
-                    document.body = document.createElement('body');
+                this.el = document.createElement(this.tagName);
+                if (this.parentNode) {
+                    this.parentNode.appendChild(this.el);
+                } else {
+                    if (!document.body) {
+                        document.body = document.createElement('body');
+                    }
+                    document.body.appendChild(this.el);
                 }
-                document.body.appendChild(this.el);
             }
         }
     }
