@@ -1,6 +1,6 @@
 {
   "name": "small-view",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "super small view",
   "main": "index.js",
   "scripts": {
