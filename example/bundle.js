@@ -7,7 +7,8 @@ var view = View({
         'button': {
             click: handleClick
         }
-    }
+    },
+    template: '<button>Hello</button>'
 });
 
 function handleClick() {
@@ -15,8 +16,6 @@ function handleClick() {
 }
 
 view.init();
-
-view.remove();
 
 },{"small-view":2}],2:[function(require,module,exports){
 function View(opts) {
@@ -53,6 +52,7 @@ View.prototype.init = function init() {
         }
     }
 
+    this.render();
     if (this.events) {
         this.attachEvents();
     }
@@ -63,11 +63,13 @@ View.prototype.detachEvents = function detachEvents() {
 };
 
 View.prototype.render = function render(context) {
+    if (this.el && this.template) {
+        this.el.innerHTML = this.template;
+    }
     return this;
 };
 
 View.prototype.remove = function remove() {
-    console.log('removing');
     this.el && this.el.parentNode.removeChild(this.el);
     this.detachEvents();
     delete this.el;

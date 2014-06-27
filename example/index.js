@@ -6,7 +6,8 @@ var view = View({
         'button': {
             click: handleClick
         }
-    }
+    },
+    template: '<button>Hello</button>'
 });
 
 function handleClick() {
@@ -14,5 +15,3 @@ function handleClick() {
 }
 
 view.init();
-
-view.remove();

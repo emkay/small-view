@@ -16,24 +16,23 @@ View.prototype.init = function init() {
     this.el = document.querySelector(this.container);
 
     if (!this.el) {
-        if (!this.template) {
-            if (this.container === 'body') {
-                document.body = document.createElement('body');
-                this.el = document.body;
+        if (this.container === 'body') {
+            document.body = document.createElement('body');
+            this.el = document.body;
+        } else {
+            this.el = document.createElement(this.tagName);
+            if (this.parentNode) {
+                this.parentNode.appendChild(this.el);
             } else {
-                this.el = document.createElement(this.tagName);
-                if (this.parentNode) {
-                    this.parentNode.appendChild(this.el);
-                } else {
-                    if (!document.body) {
-                        document.body = document.createElement('body');
-                    }
-                    document.body.appendChild(this.el);
+                if (!document.body) {
+                    document.body = document.createElement('body');
                 }
+                document.body.appendChild(this.el);
             }
         }
     }
 
+    this.render();
     if (this.events) {
         this.attachEvents();
     }
@@ -44,6 +43,9 @@ View.prototype.detachEvents = function detachEvents() {
 };
 
 View.prototype.render = function render(context) {
+    if (this.el && this.template) {
+        this.el.innerHTML = this.template;
+    }
     return this;
 };
 
