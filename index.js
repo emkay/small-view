@@ -12,6 +12,11 @@ function View(opts) {
 
 View.prototype.init = function init() {
     var tag;
+    var attrMap = {
+        '#': 'id',
+        '.': 'class'
+    };
+    var attrName;
 
     this.el = document.querySelector(this.container);
 
@@ -29,6 +34,11 @@ View.prototype.init = function init() {
                 }
                 document.body.appendChild(this.el);
             }
+        }
+
+        if (this.container) {
+            attrName = this.container.slice(1);
+            this.el.setAttribute(attrMap[this.container.charAt(0)], attrName);
         }
     }
 
