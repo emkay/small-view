@@ -41,3 +41,16 @@ test('view remove', function (t) {
     t.notok(view.el, 'Container is gone after `remove`');
     t.end();
 });
+
+test('view set container attribute', function (t) {
+    var view = View({
+        container: '#main-view'
+    });
+
+    view.init();
+
+    t.ok(view, 'All is well with `view`');
+    t.ok(document.querySelector('#main-view'), 'Container has id of `main-view`');
+
+    t.end();
+});
